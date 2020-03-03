@@ -1,0 +1,119 @@
+body {
+    background-color: #EBF8FF;
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+h1.top {
+    font-size: 46px;
+    margin-top: 80px;
+    margin-bottom: 0;
+}
+
+p.top-info {
+    opacity: 0.6;
+    font-size: 18px;
+}
+
+a, button, input[type="checkbox"], input[type="radio"], input[type="submit"], label {
+    cursor: pointer;
+}
+
+button, input, select, textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+        border-left-color: currentcolor;
+        border-left-style: none;
+        border-left-width: medium;
+    background: 
+    transparent;
+    outline: none;
+    font-size: 16px;
+}
+
+button, input, select, textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background: 
+    transparent;
+    outline: none;
+    font-size: 16px;
+}
+
+.border {
+    border-radius: 12px;
+    width: 500px;
+    background-color: #fff;
+    margin-top: 20px;
+    box-shadow: 0 8px 24px 0 rgba(90,94,91,.15),0 2px 4px 0 rgba(0,0,0,.05);
+}
+
+.home-upload-retrieve-form {
+    border-radius: 12px;
+    border: 1px dashed #c5cec7;
+    position: relative;
+    margin-bottom: 0px;
+}
+
+.home-upload-retrieve-form input, select {
+    border-radius: 12px;
+    border: 1px solid #cbd3cd;
+    border-radius: 4px;
+    -webkit-transition: border-color .2s;
+    transition: border-color .2s;
+    padding: 0 10px;
+    font-size: 13px;
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 30px;
+}
+
+input[type=number] {
+    width: 100px;
+}
+
+.home-upload-retrieve-form input.big {
+    width: 89%;
+    line-height: 46px;
+    padding: 0 16px;
+}
+
+.top-swoosh {
+    position: absolute;
+    right: 0%;
+    top: -50px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.button {
+    background-color: #2B6CB0;
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+    margin-top: 20px;
+    display: inline-block;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 16px 0 rgba(87,181,96,.1);
+    line-height: 48px;
+    font-weight: 700;
+    padding: 0 32px;
+    -webkit-transition: background-color .2s,color .2s,-webkit-transform .2s;
+    transition: background-color .2s,color .2s,-webkit-transform .2s;
+    transition: background-color .2s,color .2s,transform .2s;
+    transition: background-color .2s,color .2s,transform .2s,-webkit-transform .2s;
+}
+
+input.ip {
+    width: 80%;
+    display: inline-block;
+}
+
+.jBox-wrapper {
+    max-width: 500px;
+}
