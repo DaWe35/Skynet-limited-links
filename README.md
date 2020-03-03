@@ -15,11 +15,11 @@ Limited downloads for  Sia Skynet
 
 ## POST  `/new`
 
-**Required value:**
+### Required value:
 
 skylink *[skynet file hash]*
 
-**Optional values:**
+### Optional values:
 
 downloadable *[integer]*
 
@@ -29,7 +29,7 @@ expire_unit *[minute, hour, day, week, month]*
 
 password *[string]*
 
-**Return:**
+### Return:
 
 `{"error": "Human readable description"}`
 
