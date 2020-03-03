@@ -13,12 +13,26 @@ Limited downloads for  Sia Skynet
 
 # Api
 
-- POST  `/new`
+## POST  `/new`
+
 **Required value:**
+
 skylink *[skynet file hash]*
+
 **Optional values:**
+
 downloadable *[integer]*
+
 expire_value *[integer]*
+
 expire_unit *[minute, hour, day, week, month]*
+
 password *[string]*
+
 **Return:**
+
+`{"error": "Human readable description"}`
+
+or
+
+`{"id": "23r4lw02m2i9", "url": "http://skylimit.local/get/23r4lw02m2i9"}`
