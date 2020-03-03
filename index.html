@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Skynet limited links</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap-grid.css" rel="stylesheet">
@@ -17,14 +18,14 @@
             </span>
         </p>
         <div class="border p-3 m-auto">
-            <form class="home-upload-retrieve-form p-5 text-center" method="post" action="new">
+            <form method="POST" action="new/index.php" class="home-upload-retrieve-form p-5 text-center">
                 <input type="text" name="skylink" placeholder="Skylink" class="big">
                 <span class="tooltip" title="For example: CABAB_1Dt0FJsxqsu_J4TodNCbCGvtFf1Uys_3EgzOlTcg">
                     <i class="fa fa-info-circle"></i>
                 </span>
-                <p>Optional limits <span style="opacity: 0.6">(leave empty what you don't need)<span></p>
+                <p>Optional limits <span style="opacity: 0.6">(leave empty what you don't need)</span></p>
 
-                <p>Downloadable <input type="number" name="skylink"> times
+                <p>Downloadable <input type="number" name="downloadable"> times
                     <span class="tooltip" title="After the file was opened x times, the link won't work.">
                         <i class="fa fa-info-circle"></i>
                     </span>
@@ -32,11 +33,11 @@
 
                 <p>Expire after <input type="number" name="expire_value" class="mr-0">
                     <select name="expire_unit" class="ml-0">
-                        <option value="minutes">Minutes</option>
-                        <option value="hours">Hours</option>
-                        <option value="days" selected>Days</option>
+                        <option value="minute">Minutes</option>
+                        <option value="hour">Hours</option>
+                        <option value="day" selected>Days</option>
                         <option value="week">Weeks</option>
-                        <option value="months">Months</option>
+                        <option value="month">Months</option>
                     </select>
                     
                     <span class="tooltip" title="After this time, the link won't work.">
@@ -49,7 +50,6 @@
                         <i class="fa fa-info-circle"></i>
                     </span>
                 </p>
-
                 
                 <button type="submit" class="button"><i class="fa fa-share mr-2"></i>Generate link</button>
             </form>

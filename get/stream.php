@@ -10,7 +10,7 @@ function stream($filename) {
     header('Content-Type: ' . $content_type);
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 500);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3600);
 
 
     curl_setopt($ch, CURLOPT_HEADERFUNCTION, function ($ch, $header) {

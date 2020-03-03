@@ -9,10 +9,16 @@ Limited downloads for  Sia Skynet
 
 - Time
 
-- Ip
-
 - Password
 
 # Api
 
-soon
+- POST  `/new`
+**Required value:**
+skylink *[skynet file hash]*
+**Optional values:**
+downloadable *[integer]*
+expire_value *[integer]*
+expire_unit *[minute, hour, day, week, month]*
+password *[string]*
+**Return:**
