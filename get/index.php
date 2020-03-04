@@ -84,15 +84,6 @@ if ($row['downloadable'] != null && $row['downloadable'] <= 0) {
     forbidden("The file has already been downloaded as many times as it could");
 }
 
-// Update downloadable count
-if ($row['downloadable'] != null && $row['downloadable'] > 0) {
-    $stmt = $db->prepare("UPDATE sia_links SET downloadable = downloadable-1 WHERE id = ?");
-    if (!$stmt->execute([$_GET['id']])) {
-        exit('Database error');
-    }
-    $stmt = null;
-}
-
 if ($row['password'] != null) {
     if (!isset($_POST['password'])) {
         forbidden_password(false);
@@ -101,6 +92,16 @@ if ($row['password'] != null) {
         $ip_tries = check_ip();
         forbidden_password($ip_tries);
     }
+}
+
+
+// Update downloadable count
+if ($row['downloadable'] != null && $row['downloadable'] > 0) {
+    $stmt = $db->prepare("UPDATE sia_links SET downloadable = downloadable-1 WHERE id = ?");
+    if (!$stmt->execute([$_GET['id']])) {
+        exit('Database error');
+    }
+    $stmt = null;
 }
 
 stream('https://siasky.net/' . $row['skylink']);
