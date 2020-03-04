@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('UTC');
 // CONNECT
 try {
     $db = new PDO('mysql:host=localhost;dbname=sia_links;charset=utf8', 'USER', 'PASSWORD');

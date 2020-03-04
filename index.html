@@ -18,7 +18,7 @@
             </span>
         </p>
         <div class="border p-3 m-auto">
-            <form method="POST" action="new/index.php" class="home-upload-retrieve-form p-5 text-center">
+            <form method="POST" action="new/index.php" class="home-upload-retrieve-form p-5 text-center" id="form">
                 <input type="text" name="skylink" placeholder="Skylink" class="big">
                 <span class="tooltip" title="For example: CABAB_1Dt0FJsxqsu_J4TodNCbCGvtFf1Uys_3EgzOlTcg">
                     <i class="fa fa-info-circle"></i>
@@ -33,9 +33,10 @@
 
                 <p>Expire after <input type="number" name="expire_value" class="mr-0">
                     <select name="expire_unit" class="ml-0">
+                        <option disabled selected value>-select-</option>
                         <option value="minute">Minutes</option>
                         <option value="hour">Hours</option>
-                        <option value="day" selected>Days</option>
+                        <option value="day">Days</option>
                         <option value="week">Weeks</option>
                         <option value="month">Months</option>
                     </select>
@@ -61,9 +62,26 @@
         <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.0.8/dist/jBox.all.min.css" rel="stylesheet">
 
         <script>
+            // Initialize tooltips
             new jBox('Tooltip', {
                 attach: '.tooltip',
                     closeOnMouseleave: true
+            });
+
+
+            // Remove empty values on form submit (required for api)
+            var myForm = document.getElementById('form');
+
+            myForm.addEventListener('submit', function () {
+                var allInputs = myForm.getElementsByTagName('input');
+
+                for (var i = 0; i < allInputs.length; i++) {
+                    var input = allInputs[i];
+
+                    if (input.name && !input.value) {
+                        input.name = '';
+                    }
+                }
             });
         </script>
     </body>

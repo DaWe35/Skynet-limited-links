@@ -71,7 +71,6 @@ if (isset($_POST['expire_value']) && isset($_POST['expire_unit'])) {
     } else if (intval($_POST['expire_value']) < 1) {
         error("Wrong value, 'expire_unit' must be an integer");
     } else {
-        date_default_timezone_set('UTC');
         $current_time = date("Y-m-d H:i:s");
         $expire = date('Y-m-d H:i:s',strtotime('+'.$_POST['expire_value'].' ' . $_POST['expire_unit'],strtotime($current_time)));
     }
@@ -83,7 +82,12 @@ if (isset($_POST['password'])) {
     if (empty($_POST['password'])) {
         error("Password is empty - remove it, or pass a string");
     }
-    $password = $_POST['password'];
+
+    $options = [
+        'cost' => 10,
+    ];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
+
 } else {
     $password = null;
 }
@@ -105,7 +109,7 @@ if (!$stmt->execute($sqlData)) {
 
 
 $print['id'] = $id;
-$print['url'] = URL . 'get/' . $id;
+$print['url'] = URL . 'get?id=' . $id;
 $print = json_encode($print);
 echo $print;
 exit;
