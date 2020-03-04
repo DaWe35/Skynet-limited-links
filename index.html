@@ -104,20 +104,13 @@
 
                 $('#sendbtn').prop("disabled", true);
 
-                // Remove empty values on form submit (required for api)
-                var myForm = document.getElementById('form');
-                var allInputs = myForm.getElementsByTagName('input');
-                for (var i = 0; i < allInputs.length; i++) {
-                    var input = allInputs[i];
-
-                    if (input.name && !input.value) {
-                        input.name = '';
-                    }
-                }
-
                 var post_url = $(this).attr("action");
                 var request_method = $(this).attr("method");
-                var form_data = $(this).serialize();
+                var form_data = $("#form :input")
+                    .filter(function(index, element) {
+                        return $(element).val() != '';
+                    })
+                    .serialize();
                 $.ajax({
                     url : post_url,
                     type: request_method,
