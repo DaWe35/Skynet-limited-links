@@ -10,4 +10,4 @@ try {
     exit("Database error");
 }
 
-define('URL', 'http://skylimit.local/');
+define('URL', 'https://skylimit.local/');

@@ -36,3 +36,15 @@ password *[string]*
 or
 
 `{"id": "23r4lw02m2i9", "url": "http://skylimit.local/get/23r4lw02m2i9"}`
+
+# Install
+
+- Insall Apache/Nginx with PHP & MySQL
+
+- git clone into the website directory
+
+- Create database `sia_links` and import `sia_links.sql` file
+
+- setup mysql user for database
+
+- `cp config_default.php config.php`, and edit config.php database credentials & site URL

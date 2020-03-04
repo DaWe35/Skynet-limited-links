@@ -43,6 +43,11 @@ button, input, select, textarea {
     font-size: 16px;
 }
 
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
 .border {
     border-radius: 12px;
     width: 500px;
@@ -116,4 +121,78 @@ input.ip {
 
 .jBox-wrapper {
     max-width: 500px;
+}
+
+.upload-file-text p {
+    font-size: 14px;
+    color: 
+    #969a97;
+}
+
+.upload-file-text {
+    display: block;
+    margin: 0 18px;
+    flex: 1 1;
+}
+
+.upload-file-icon {
+    display: block;
+    min-width: 36px;
+    width: 36px;
+    max-width: 36px;
+}
+
+.upload-file {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.home-uploaded-files {
+    border: 1px solid #c5cec7;
+    margin-top: 10px;
+    border-radius: 4px;
+    padding: 0 40px;
+    display: none;
+}
+
+.upload-file-copy-button {
+    border: 1px solid #2B6CB0;
+    border-radius: 3px;
+    color: #2B6CB0;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 700;
+    -webkit-transition: color .2s,background-color .2s;
+    transition: color .2s,background-color .2s;
+    font-size: 14px;
+    padding: 0 15px;
+    line-height: 46px;
+}
+
+.upload-file-copy input {
+    position: absolute;
+    left: -999em;
+}
+
+.upload-file-text .url {
+    word-break: break-all;
+}
+
+.upload-file-text a {
+    color: #2B6CB0;
+}
+
+.upload-file-copy-button svg {
+    margin-left: 10px;
+}
+
+.upload-file-copy-button:hover {
+    background-color: #2B6CB0;
+    color: #fff;
+}
+
+#sample_upload {
+    display: none;
 }

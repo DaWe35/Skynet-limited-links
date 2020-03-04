@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Skynet limited links</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -19,7 +20,7 @@
         </p>
         <div class="border p-3 m-auto">
             <form method="POST" action="new/index.php" class="home-upload-retrieve-form p-5 text-center" id="form">
-                <input type="text" name="skylink" placeholder="Skylink" class="big">
+                <input type="text" name="skylink" placeholder="Skylink" class="big" autocomplete>
                 <span class="tooltip" title="For example: CABAB_1Dt0FJsxqsu_J4TodNCbCGvtFf1Uys_3EgzOlTcg">
                     <i class="fa fa-info-circle"></i>
                 </span>
@@ -52,8 +53,27 @@
                     </span>
                 </p>
                 
-                <button type="submit" class="button"><i class="fa fa-share mr-2"></i>Generate link</button>
+                <button type="submit" class="button" id="sendbtn"><i class="fa fa-share mr-2"></i>Generate link</button>
             </form>
+            <div class="home-uploaded-files">
+                <div class="upload-file" id="sample_upload">
+                    <div class="upload-file-icon"><svg width="38" height="42" viewBox="0 0 38 42"><g fill="none" fill-rule="evenodd"><path d="M3 1h18l16 16v22a2 2 0 01-2 2H3a2 2 0 01-2-2V3a2 2 0 012-2zm12 24l3 3 5-5" stroke="#2B6CB0" stroke-width="2" stroke-linejoin="round"></path><path d="M21 2l15 15H23a2 2 0 01-2-2V2z" fill="#2B6CB0"></path></g></svg></div>
+                        <div class="upload-file-text">
+                            <p><a href="https://siasky.net/AABdiNgRpWhpApfSrLyZqEnEw-9xQY_5Feb_2rOdZMBDzQ" class="url green-text">https://siasky.net/AABdiNgRpWhpApfSrLyZqEnEw-9xQY_5Feb_2rOdZMBDzQ</a></p>
+                        </div>
+                        <span class="tooltip" title="Copy to clipboard">
+                            <button class="upload-file-copy" onclick="copyClip('1')">
+                                <div class="upload-file-copy-button">Copy Link
+                                    <svg width="12" height="14" viewBox="0 0 12 14">
+                                        <path d="M8 1H4a3 3 0 00-3 3v6h0m4-6h5a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path>
+                                    </svg>
+                                </div>
+                                <input readonly="" value="https://siasky.net/AABdiNgRpWhpApfSrLyZqEnEw-9xQY_5Feb_2rOdZMBDzQ" id="1">
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -62,19 +82,31 @@
         <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.0.8/dist/jBox.all.min.css" rel="stylesheet">
 
         <script>
+
             // Initialize tooltips
             new jBox('Tooltip', {
                 attach: '.tooltip',
                     closeOnMouseleave: true
             });
 
+            // Copy to clipboard buttons
+            function copyClip(inputId) {
+                var copyText = document.getElementById(inputId);
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+                document.execCommand("copy");
+            } 
 
-            // Remove empty values on form submit (required for api)
-            var myForm = document.getElementById('form');
 
-            myForm.addEventListener('submit', function () {
+            // form submit
+            $("#form").submit(function(event){
+                event.preventDefault();
+
+                $('#sendbtn').prop("disabled", true);
+
+                // Remove empty values on form submit (required for api)
+                var myForm = document.getElementById('form');
                 var allInputs = myForm.getElementsByTagName('input');
-
                 for (var i = 0; i < allInputs.length; i++) {
                     var input = allInputs[i];
 
@@ -82,6 +114,41 @@
                         input.name = '';
                     }
                 }
+
+                var post_url = $(this).attr("action");
+                var request_method = $(this).attr("method");
+                var form_data = $(this).serialize();
+                $.ajax({
+                    url : post_url,
+                    type: request_method,
+                    data : form_data,
+                    dataType: "json"
+                }).done(function(response){
+                    if (typeof response.error !== 'undefined') {
+                        alert('Error: ' + response.error);
+                    } else {
+                        $(".home-uploaded-files").css('display', 'inherit');
+
+                        var divClone = $("#sample_upload").clone();
+                        divClone.attr("id", "");
+                        divClone.find('a').attr('href', response.url);
+                        divClone.find('a').html(response.url);
+                        divClone.find('input').val(response.url);
+                        divClone.find('input').attr('id', response.id);
+                        divClone.find('button').attr('onclick', "copyClip('" + response.id + "')");
+
+                        $(divClone).prependTo('.home-uploaded-files');		
+                    }
+                }).fail(function(response){
+
+                    if (typeof response.responseJSON.error !== 'undefined') {
+                        alert('Failed: ' + response.responseJSON.error);
+                    } else {
+                        alert('Some error happened');
+                    }
+                }).always(function(){
+                    $('#sendbtn').prop("disabled", false);
+                });
             });
         </script>
     </body>
